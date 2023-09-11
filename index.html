@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generater</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .wrapper{
+            width: 100vw;
+            height: 100vh;
+            background-color: blanchedalmond;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main{
+            text-align: center;
+            width: 40%;
+            background-color: aquamarine;
+            border-radius: 10px;
+            height: fit-content;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+        }
+        input{
+            padding: 7px 10px;
+            border-radius: 10px;
+            border: none;
+        }
+        input::placeholder{
+            padding-left: 20px;
+        }
+
+        #btn{
+            margin: 0px auto;
+            background-color: green;
+            border-radius: 10px;
+            border: none;
+            font-size:2vw;
+            padding: 5px 0px;
+            width: 50%;
+            color: white;
+            font-weight: bold;
+        }
+        h2{
+            text-transform: capitalize;
+        }
+        .image{
+            display: none;
+            text-align: center;
+            margin: auto;
+        }
+        .image.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <h2>enter your text or URL</h2>
+            <input type="text" id="text" placeholder="Generate QR Code" required>
+            <img src="" height="5%"  width="50%" id="showUR" class="image">
+            <button id="btn">Generate</button>
+        </div>
+    </div>
+    <script>
+
+        const generateUR= async ()=>{
+            showUR.src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text.value}`;
+            showUR.classList.add("active");
+        }
+
+       btn.addEventListener("click",()=>{
+                if(text.value!=""){
+                    generateUR();
+                }else{
+                    alert("pls enter the text");
+                }
+       })
+    </script>
+</body>
+</html>
